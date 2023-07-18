@@ -18,12 +18,14 @@ public class Main {
         Cats nora= new Cats();
         Cats mara = new Cats();
         Dogs boggy = new Dogs();
+        Owner marina = new Owner();
         Owner artem = new Owner();
 
         dogService.add(boggy);
         catService.add(nora);
         catService.add(mara);
         ownerService.add(artem);
+        ownerService.add(marina);
 
         catService.fetch(1);
 
