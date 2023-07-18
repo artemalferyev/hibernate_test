@@ -10,7 +10,11 @@ public class Owner {
     private Integer id;
     private String name;
 
-    @OneToOne
+    @OneToOne(
+            cascade = {CascadeType.ALL},
+            orphanRemoval = true,
+            mappedBy = "Owner"
+    )
     private Cats cat;
 
     public void setId(Integer id) {
