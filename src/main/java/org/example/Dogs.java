@@ -47,6 +47,14 @@ public class Dogs extends Animal {
         return name;
     }
 
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
     @OneToOne
     private Owner owner;
 }
