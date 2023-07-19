@@ -1,13 +1,17 @@
-package org.example;
+package Animals;
 
 
 import Services.Animal;
-import Services.CatService;
+import Owner.Owner;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Set;
 
 @Entity
 @Table (name = "Cats")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Cats extends Animal {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -15,6 +19,14 @@ public class Cats extends Animal {
     private String breed;
     private int age;
     private String name;
+
+    public Cats(){}
+
+    public Cats(String breed, int age, String name){
+        this.breed = breed;
+        this.age = age;
+        this.name = name;
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -48,15 +60,14 @@ public class Cats extends Animal {
         return name;
     }
 
-    public void setOwner(Owner owner) {
-        this.owner = owner;
+    public void setOwnerList(Set<Owner> ownerList) {
+        this.ownerList = ownerList;
     }
 
-    public Owner getOwner() {
-        return owner;
+    public Set<Owner> getOwnerList() {
+        return ownerList;
     }
 
-    @OneToOne
-    private Owner owner;
-
+    @ManyToMany
+    private Set<Owner> ownerList;
 }

@@ -9,7 +9,6 @@ public abstract class Animal {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
 
     private int age;
     private String name;

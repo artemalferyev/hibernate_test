@@ -3,10 +3,14 @@ package org.example;
 import Services.CatService;
 import Services.DogService;
 import Services.OwnerService;
+import Animals.Cats;
+import Animals.Dogs;
+import Owner.Owner;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
@@ -15,27 +19,20 @@ public class Main {
         DogService dogService = new DogService();
         OwnerService ownerService = new OwnerService();
 
-        Cats nora= new Cats();
-        Cats mara = new Cats();
-        Dogs boggy = new Dogs();
+        Cats cat1 = new Cats("normal", 21, "Nora");
+        Cats cat2 = new Cats("normal", 5, "Mara");
+        Dogs dog1 = new Dogs("normal", 1, "Boggy");
+
         Owner marina = new Owner();
         Owner artem = new Owner();
 
-        dogService.add(boggy);
-        catService.add(nora);
-        catService.add(mara);
+        catService.getCats();
+
+        artem.setCat(cat1);
+
         ownerService.add(artem);
         ownerService.add(marina);
 
-        catService.fetch(1);
-
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-
-        EntityManager em = emf.createEntityManager();
-
-        System.out.println(em.createNativeQuery("SELECT 1 + 1").getSingleResult());
-
-        em.close();
-        emf.close();
+        ownerService.fetch(artem.getId());
     }
 }

@@ -1,4 +1,6 @@
-package org.example;
+package Owner;
+
+import Animals.Cats;
 
 import javax.persistence.*;
 
@@ -7,13 +9,21 @@ import javax.persistence.*;
 public class Owner {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String name;
+
+    public Owner(){}
+
+    public Owner(Integer id, String name){
+        this.id = id;
+        this.name = name;
+    }
 
     @OneToOne(
             cascade = {CascadeType.ALL},
             orphanRemoval = true,
-            mappedBy = "Owner"
+            mappedBy = "owner"
     )
     private Cats cat;
 
